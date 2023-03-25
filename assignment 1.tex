@@ -4,6 +4,7 @@
 \usepackage{alphabeta}
 \usepackage{listings}
 \usepackage{tikz, tcolorbox}
+\usepackage{xcolor}
 
 \title{\textbf{Algorithms - Assignment 1}}
 
@@ -54,7 +55,7 @@ function MajorityFinder(A[1...n])
 \item Ερώτημα 2
 \end{itemize}
 
-\lstset{numbers=left, numbersep=5pt,frame=none,  framexleftmargin=15pt}
+\lstset{frame=none}
 
 \begin{tcolorbox}[colback=blue!20!white,colframe=purple!60!white,title=\textbf{Merge Sort}]
 \begin{lstlisting}[mathescape]
@@ -84,10 +85,68 @@ function merge(x[1...k], y[1...l])
 
 \begin{lstlisting}[mathescape]
 function MajorityFinder2(A[1...n])
+ majority_person = []
  mergesort(A)
  for(i = 1 to n)
- 	if(A[i] = = A[
+ 	if(A[i] = = A[$\lceil\frac{n}{2}\rceil$ - 1 + i])
+ 		if(majority_person[1] = = null)
+ 			majority_person[1] = A[i]
+ 		else
+ 			majority_person[2] = A[i]
+ return majority_person
 \end{lstlisting}
 
+\begin{itemize}
+\item Ερώτημα 3
+\end{itemize}
+
+\begin{lstlisting}[mathescape]
+function MajorityFinder3(A[1...n])
+ majority_person = []
+ HashMap T
+ for(i = 1 to n)
+ 	if(T.search(A[i]) = = true)
+ 		T[A[i]] = T[A[i]] + 1
+ 	else 
+ 		T.put([A[i], 1)
+ 	if(T[A[i]] $\geq \lceil\frac{n}{2}\rceil$)
+ 		if(majority_person[1] = = null)
+ 			majority_person[1] = A[i]
+ 		else
+ 			majority_person[2] = A[i]
+ return majority_person
+\end{lstlisting}
+
+\section*{Πρόβλημα 2}
+
+\begin{itemize}
+\item Ερώτημα 1
+\end{itemize}
+
+\lstset{frame=none}
+\begin{tcolorbox}[colback=blue!20!white,colframe=purple!60!white,title=\textbf{Algorithm 1}]
+Έστω πίνακας T με στοιχεία n θετικούς ακεραίους με εύρος [0,...,k] (k ακέραιος)
+\begin{lstlisting}[mathescape]
+ for i = 0,...,k do
+	 H[i] = 0
+ end for
+ for j = 1,...,n do
+	 H[T[j]] = H[T[j]] + 1
+ end for
+ for i = 1,...,k do
+	 H[i] = H[i] + H[i - 1]
+ end for
+ for j = n,...,1 do
+	 S[H[T[j]]] = T[j]
+	 H[T[j]] = H[T[j]] -1
+ end for
+\end{lstlisting}
+\end{tcolorbox}
+
+
+
+\begin{itemize}
+\item Ερώτημα 2
+\end{itemize}
 
 \end{document}
