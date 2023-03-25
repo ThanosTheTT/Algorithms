@@ -3,6 +3,7 @@
 \usepackage[greek,english]{babel}
 \usepackage{alphabeta}
 \usepackage{listings}
+\usepackage{tikz, tcolorbox}
 
 \title{\textbf{Algorithms - Assignment 1}}
 
@@ -17,7 +18,7 @@
 
 \maketitle
 \pagebreak
-\section*{Πρόβλημα 1\\}
+\section*{Πρόβλημα 1}
 
 \begin{itemize}
 \item Ερώτημα 1
@@ -25,7 +26,7 @@
 
 \lstset{numbers=left, numbersep=5pt,frame=single,  framexleftmargin=15pt}
 
-\begin{lstlisting}
+\begin{lstlisting}[mathescape]
 function MajorityFinder(A[1...n])
  majority_person = []
  maxcount = 0
@@ -37,11 +38,56 @@ function MajorityFinder(A[1...n])
  	for(j = 1 to n)
  		if(temp = = A[j])
  			count++
- 	if(count
- 	
-
+ 	if(count > maxcount)
+ 		maxcount = count
+ 		majority_person[1] = temp
+ 		majority_person[2] = null
+ 	else if(count = = maxcount)
+ 		majority_person[2] = temp
+ if(maxcount $\geq$ $\lceil\frac{n}{2}\rceil$)
+ 	return majority_person
+ else 
+ 	return "no person has the majority"
 \end{lstlisting}
 
+\begin{itemize}
+\item Ερώτημα 2
+\end{itemize}
+
+\lstset{numbers=left, numbersep=5pt,frame=none,  framexleftmargin=15pt}
+
+\begin{tcolorbox}[colback=blue!20!white,colframe=purple!60!white,title=\textbf{Merge Sort}]
+\begin{lstlisting}[mathescape]
+function mergesort(a[1...n])
+ if(n > 1)
+ 	return merge(mergesort(a[1...$\lfloor\frac{n}{2}\rfloor$]), mergesort(a[$\lfloor\frac{n}{2}\rfloor$ + 1 ...n]))
+ else
+ 	return a
+\end{lstlisting}
+
+\begin{lstlisting}[mathescape]
+function merge(x[1...k], y[1...l])
+ if(k = 0)
+ 	return y[1...l]
+ if(l = 0)
+ 	return x[1...l]
+ if(x[1] $\geq$ y[1])
+ 	return x[1] $\circ$ merge(x[2...k], y[1...l])
+ else
+ 	return y[1] $\circ$ merge(x[1...k], y[2...l])
+\end{lstlisting}
+\end{tcolorbox}
+
+\lstset{numbers=left, numbersep=5pt,frame=single,  framexleftmargin=15pt}
+
+\pagebreak
+
+\begin{lstlisting}[mathescape]
+function MajorityFinder2(A[1...n])
+ mergesort(A)
+ for(i = 1 to n)
+ 	if(A[i] = = A[
+\end{lstlisting}
 
 
 \end{document}
