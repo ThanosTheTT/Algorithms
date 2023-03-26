@@ -171,7 +171,38 @@ function MajorityFinder3(A[1...n])
 \hline
 1 & 1 & 1 & 1 & 1 & 1\\\hline
 \end{tabular}
+\begin{tabular}{|l|c|c|}
+\hline
+Εντολές & costs & times \\
+\hline
+1  for i = 0,...,k do   & c1 & k+2\\
+\hline
+2  H[i] = 0 & c2 & k+1 \\
+\hline
+3  end for & & \\
+\hline
+4  for j=1,...,n do & c4 & n+1 \\ 
+\hline 
+5 H[T[j]] = H[T[j]]+1 & c5 & n  \\
+\hline
+6 end for &  & \\
+\hline
+7 for i =1,...,k do & c7 & k   \\
+\hline
+8 H[i]= H[i]+H[i-1] & c8 & k-1 \\
+\hline
+9 end for & &   \\
+\hline 
+10 for j = n,...,1 do & c10 & n+1 \\
+\hline
+11 S[H[T[ j ] ] ] = T[ j ] & c11 & n \\
+\hline
+12 H[T[ j ] ] = H[T[ j ] ]-1 & c12 & n \\
+\hline
+13 end for & &  \\
+\hline
 
+\end{tabular}
 
 \begin{itemize}
 \item Ερώτημα 2
