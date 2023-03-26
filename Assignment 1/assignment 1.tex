@@ -1,5 +1,5 @@
 \documentclass[a4paper]{article}
-\paok
+
 
 \usepackage[greek,english]{babel}
 \usepackage{alphabeta}
@@ -101,6 +101,22 @@ function MajorityFinder2(A[1...n])
  		else
  			majority_person[2] = A[i]
  return majority_person
+\end{lstlisting}
+
+
+\begin{lstlisting}[mathescape]
+function MajorityFinder2(A[1...n])
+ majority_person = []
+ mergesort(A)
+  if(n%2==0 && A[1]=!A[n]&&A[1]=A[$\lceil\frac{n}{2}\rceil$]&& A[$\lceil\frac{n}{2}+1\rceil$]=A[n])
+  return A[1],A[n]   
+ else     
+ for(i = 1 to n)
+ 	if(A[i] = = A[$\lceil\frac{n}{2}\rceil$ - 1 + i])
+     return A[i]->end algorithm
+ 	
+         else 
+ return "no person has the majority"
 \end{lstlisting}
 
 \begin{itemize}
