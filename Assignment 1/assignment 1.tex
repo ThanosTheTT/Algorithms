@@ -28,9 +28,18 @@
 \pagebreak
 \section*{Πρόβλημα 1}
 
-\begin{itemize}
-\item Ερώτημα 1
-\end{itemize}
+\textbf{
+\color{red}Ερώτημα 1}
+O αλγόριθμος που παρατιίθεται παρακάτω δέχεται σαν είσοδο μια συστοιχία n στοιχίων όπου n ειναι οι ψήφοι -σε ονοματεπώνυμα-μιας κοινότητας.
+Στόχος του αλγόριθμου ειναι:
+\begin{enumerate}
+    \item να ελέγξει ποιος/α έχει τους περισσότερους ψήφους.
+    \item αμα ξεπερνούν ή είναι ίσοι του 50\%\ των συνολικών ψήφων.
+    \item εφόσων ισχύει το παραπάνω επιστρέψει στην έξοδο το ονοματεπώνυμο του υποψήφιου(ελέγχοντας το ακραίο σεναρίο να υπάρχουν 2 υποψήφιοι που ισοβαθμούν ΚΑΙ έχουν το 50\%\ των ψήφων) .
+  
+\end{enumerate}
+        $$ \textbf{ΑΛΓΟΡΙΘΜΟΣ 1}$$
+
 
 \lstset{numbers=left, numbersep=5pt,frame=single,  framexleftmargin=15pt}
 
@@ -50,18 +59,56 @@ function MajorityFinder(A[1...n])
  		maxcount = count
  		majority_person[1] = temp
  		majority_person[2] = null
- 	else if(count = = maxcount)
+ 	else if(count = = maxcount AND temp $\neq$ majority_person[1])
  		majority_person[2] = temp
  if(maxcount $\geq$ $\lceil\frac{n}{2}\rceil$)
  	return majority_person
  else 
  	return "no person has the majority"
 \end{lstlisting}
+\textit{
+\section*{
+\subsection*{ΑΝΑΛΥΣΗ ΑΛΓΓΟΡΙΘΜΟΥ:}}
+}
 
 \begin{itemize}
-\item Ερώτημα 2
+    \item Στη 1η σείρα ο αλγόριθμος δέχεται τις n ψήφους μέσω μιας συστοιχίας "A[1...n]"
+\end{itemize}
+\begin{itemize}
+    \item Στη 2η σειρα ορίζουμε τον πίνακα "majority person"στον οποίο θα αποθηκευτεί  το ονόμα του υπερέχoν υποψήφιου , το μέγεθος του πίνακα είναι μεταβλητό για να καλύπτει και την περίπτωση της ισοβαθμίας.
+\end{itemize}
+\begin{itemize}
+    \item Στις γραμμές 3-5 γίνονται αρχικοποιήσεις που χρησιμέυουν στη καταμέτρηση των ψήφων και των υποψήφιων με τους περισσότερους.
+\end{itemize}
+\begin{itemize}
+    \item Στις γραμμές 6-11 ο αλγόριθμος καταμετρεί όλες τις ψήφους .Συγκεκριμένα η αρχική η for χρησιμοποιείται για να προσπελαστούν όλες οι ψήφοι,ενώ η 2η για να γίνει έλεγχος ποιες ψηφοί έχουν το ίδιο ονοματεπώνυμο με την i-στη.Ετσι μεσω το count μετράμε τις συνολικες ψήφους που έχει ο υποψήφιος που βρισκεταιο στην i-στη θεση του αρχικου πινακα ενώ στο temp αποθηκέυται το ονοματεπώνυμο του.Eπειδη εχουμε εμφωλευμενες for η πολυπολοκοτητα γινεται Ο($n^2$).   
+\end{itemize}
+\begin{itemize}
+    \item Στις γραμμες 12-17 γίνεται  ελεγχός για να βρέθει  ποιος υποψήφιος εχει τις περισσοτερες ψήφους,ενω καλυπτεται η περιπτωση της ισοβαθμιας υποψηφιων μεσω του μεταβλητου πινακα "majority person"
+\end{itemize}
+\begin{itemize}
+    \item Στις τελευταιες γραμμες 18-21 γινεται ελεγχος αμα καποιος υποψήφιος εχει $\geq$ του 50\%\ των ψηφών,η εξοδος ειτε θα εχει κανενα ενα ή ακομα και 2 ομνοματα στην ακραια περίπτωση που έχουμε 2 υποψηφιους με τις μισε ψηφους αμφοτεροι.
+\end{itemize}
+\begin{itemize}
+    \item Aνακεφαλαιώνοντας πρόκειται για εναν αργο αλγορίθμο Ο($n^2$) καθως ελεγχονται n φορες όλα τα ονοματεπώνυμα ενώ συγκρίνουμε ολές τις ψήφους μεταξύ τους μια προς μια .Γεγονώς που θα προσπαθήσουμε να ανατρέψουμε στα επώμενα ερωτήματα   
 \end{itemize}
 
+
+
+
+
+
+
+\newpage
+
+\textbf{
+\color{red}Ερώτημα 2}
+Στη προσπάθεια μας να βελτιώσουμε τον αλγόριθμο πολυπλoκότητας από 0($n^2$) σε 0($logn$) θα χρησιμοποιήσουμε την στρατιγική \textit{\textbf{διαίρει-και-κυρίευε}}(Divide-and-conquer).Συγκεκριμένα ο αλγόριθμος  μας βασίζεται στην συγχωνευτική ταξινόμιση (merge sort) ,ωστε να ταξινομηθουν τα ονοματεπώνυμα σε μια σειρά(στη περίπτωση μας αλφαβητικά).Τελός έχωντας μια ταξινομημένη λίστα μπορούμε πολυ ευκόλα να ελέγξουμε αν υπάρχει υποψήφιος με τουλάχιστον 50\%\ των ψήφων όπως παρουσιάζεται  αναλυτικότερα παρακάτω. 
+
+
+
+         \title{ο βοηθητικός αλγοριθμος που θα χρησιμοποιήσουμε:}
+         
 \lstset{frame=none}
 
 \begin{tcolorbox}[colback=blue!20!white,colframe=purple!60!white,title=\textbf{Merge Sort}]
@@ -86,39 +133,52 @@ function merge(x[1...k], y[1...l])
 \end{lstlisting}
 \end{tcolorbox}
 
+\subsection*{Ανάλυση merge sort για την περίπτωηση μας:}
+\begin{itemize}
+    \item \textbf{Αναδρομή}:διαιρούμε το πρόβλημα μας στη μέση $\frac{n}{2}$ διαδοχικά(a=2,b=2),η αναδρομή εξαντλείτε  οταν η ταξινομητέα ακολουθία έχει μήκος 1 $\geq$n, δηλαδή εχεί μονο μια ψήφο με ονοματεπώνυμο που ειναι ήδη ταξινομιμένη . 
+\end{itemize}
+    \begin{itemize}
+        \item \textbf{Συγχώνευση(merge)}:η συνάρτηση αυτή συγχωνέυει ταξινομόντας 2 ήδη ταξινομημένους πίνακες ,το βασίκο βήμα της συνάστησης εκτελείτε το πολύ n φορές ενω το υπολογιστικό κοστός c ειναι στη χειρότερη περίπτωση  ίσο με το χρόνο που χρειάζεται να προσπελαστή ένα ονοματεπώνυμο ,αυτό συμβαίνει οταν έχουμε να συγκρίνουμε το ίδιο όνομα δηλαδή την ίδια ψήφο .Συγκεκρίμενα  πάλι θεώρουμε ότι το μήκος του έχει ενα λογικό εύρος και το c είναι απλα ένας πεπερασμένος αριθμός.Σε κάθε άλλη κατάσταση άν ο πρώτος χαρακτήρας από την πρώτη συμβολοσειρά είναι μεγαλύτερος (ή μικρότερος) από αυτόν της άλλης συμβολοσειράς, τότε η πρώτη συμβολοσειρά είναι μεγαλύτερη (ή μικρότερη) από τη δεύτερη.Σύμφωνα με τα παραπάνω η συνάρτηση merge έχει χρόνο εκτέλεσης \textbf{Θ(n)}.
+    \end{itemize}
+     \begin{itemize}
+         \item \textbf{Συνολικός χρόνος} :Οπως  γνωρίζουμε απο την θεωρία  για a=2,b=2  Τ(n)=2T($\frac{n}{2}$)+Θ(n)=cnlogn+cn,και εξαιτίας της ανάλυσης που έχουμε κανει θα έχουμε χρόνο εκτέλεσης Θ(nlogn).
+     \end{itemize}
+\newpage
+\begin{itemize}
+    \item Ο  παρακάτω παρουσιάζεται ο  βασικός αλγόριθμος του ερωτήματος 2 : 
+             
+\end{itemize}
+    
+            \section*{ ΑΛΓΟΡΙΘΜΟΣ 2}
 \lstset{numbers=left, numbersep=5pt,frame=single,  framexleftmargin=15pt}
 
-\pagebreak
 
-\begin{lstlisting}[mathescape]
-function MajorityFinder2(A[1...n])
- majority_person = []
- mergesort(A)
- for(i = 1 to n)
- 	if(A[i] = = A[$\lceil\frac{n}{2}\rceil$ - 1 + i])
- 		if(majority_person[1] = = null)
- 			majority_person[1] = A[i]
- 		else
- 			majority_person[2] = A[i]
- return majority_person
-\end{lstlisting}
+
 
 
 \begin{lstlisting}[mathescape]
 function MajorityFinder2(A[1...n])
- majority_person = []
  mergesort(A)
-  if(n%2==0 && A[1]=!A[n]&&A[1]=A[$\lceil\frac{n}{2}\rceil$]&& A[$\lceil\frac{n}{2}+1\rceil$]=A[n])
+  if(n%2==0 && A[1]=!A[n] && A[1]=A[$\lceil\frac{n}{2}\rceil$] && A[$\lceil\frac{n}{2}+1\rceil$]=A[n])
   return A[1],A[n]   
  else     
  for(i = 1 to n)
- 	if(A[i] = = A[$\lceil\frac{n}{2}\rceil$ - 1 + i])
+  if(A[i] = = A[$\lceil\frac{n}{2}\rceil$ - 1 + i])
      return A[i]->end algorithm
- 	
-         else 
- return "no person has the majority"
+  else 
+     return "no person has the majority"
 \end{lstlisting}
-
+\paragraph{    ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΟΥ}}
+\begin{itemize}
+    \item Στη πρωτη σειρα ο πίνακας Α δέχεται τους ψηφούς σε ονοματεπώνυμα (συμβολοσειρές).
+\end{itemize}
+\begin{itemize}
+    \item Στη 2η γραμμή καλούμε την συνάρτηση  mergesort για να ταξινομήσουμε τον πίνακα Α κατα αλφαβητική σειρά(Θ(nlogn))
+    \item Στις επόμενες 2 γραμμές ο αλγόριθμος εξετάζει το σενάριο να έχουμε ταυτόχρονα ισοβαθμία 50\%\ 2 υποψήφιων.Αυτο συμβαίνει οταν αρχικα εχουμε αρτίο αριθμό ψήφων και οι πρωτες μισές ψήφοι του ταξινομημένου πίνακα ανήκουν στον ένα υποψήφιο και οι άλλες μισές στον αλλο ,ολο αυτο μοντελοποιείται με έναν βρόχο ελέγχου που απαιτεί πεπέρασμενο  χρόνο 0(1) αφου ειναι 4 έλεγχεει.
+    \item  Στις γραμμες 6-10 ο αλγόριθμος αναζητεί αμα υπάρχει διάστημα μήκους $\frac{n}{2}$ που να υπάρχει ο ίδιος υποψήφιος  ελέγχοντας μονο το 1ο και το $\frac{n}{2}$+1 ψήφο εκμεταλεύονας το γεγονός οτι ο πίνακας Α είναι ταξινομημένος . Ο συνολίκος χρόνος που απαιτεί η συγκεκριμένη διαδικασία είναι Τ($\frac{n}{2}$) και ειναί γραμμική η προσπέλαση άρα Ο(n).
+    \item  επειδή η γραμμές 6-10 δεν συνδέοναται με κάποια αναδρομική σχέση μεσα στην συνάρτηση merge η \textbf{συνολικη πολυπλοκότητα} του 2ου αλγορίθμου είναι nlogn +n και αρα \textbf{0(nlogn).}
+    \item Aνακεφαλαιώνοντας ο αλγόριθμος αυτός σαφώς εμφανίζεται ποιο βελτιωμένος από τον πρώτο καθώς εχούμε ελλατώσει τις συγκρίσεις σε μεγάλο βαθμό με την βοήθεια του devide and conquer αλλά και πάλι εμφανίζονται αρκετές επαναλήψεις ανάγνωσης ψήφου .
+\end{itemize}
 \begin{itemize}
 \item Ερώτημα 3
 \end{itemize}
@@ -140,7 +200,10 @@ function MajorityFinder3(A[1...n])
  return majority_person
 \end{lstlisting}
 
+
+
 \section*{Πρόβλημα 2}
+
 
 \begin{itemize}
 \item Ερώτημα 1
@@ -171,38 +234,7 @@ function MajorityFinder3(A[1...n])
 \hline
 1 & 1 & 1 & 1 & 1 & 1\\\hline
 \end{tabular}
-\begin{tabular}{|l|c|c|}
-\hline
-Εντολές & costs & times \\
-\hline
-1  for i = 0,...,k do   & c1 & k+2\\
-\hline
-2  H[i] = 0 & c2 & k+1 \\
-\hline
-3  end for & & \\
-\hline
-4  for j=1,...,n do & c4 & n+1 \\ 
-\hline 
-5 H[T[j]] = H[T[j]]+1 & c5 & n  \\
-\hline
-6 end for &  & \\
-\hline
-7 for i =1,...,k do & c7 & k   \\
-\hline
-8 H[i]= H[i]+H[i-1] & c8 & k-1 \\
-\hline
-9 end for & &   \\
-\hline 
-10 for j = n,...,1 do & c10 & n+1 \\
-\hline
-11 S[H[T[ j ] ] ] = T[ j ] & c11 & n \\
-\hline
-12 H[T[ j ] ] = H[T[ j ] ]-1 & c12 & n \\
-\hline
-13 end for & &  \\
-\hline
 
-\end{tabular}
 
 \begin{itemize}
 \item Ερώτημα 2
@@ -211,3 +243,17 @@ function MajorityFinder3(A[1...n])
 
  \end{lstlisting}
 \end{document}
+Footer
+© 2023 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
