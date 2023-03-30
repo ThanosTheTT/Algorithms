@@ -148,9 +148,9 @@ function merge(x[1...k], y[1...l])
 function MajorityFinder2(A[1...n])
  mergesort(A)
  for(i = 1 to n){
-     if((i mod 2 == 1) AND (A[i] = = A[$\lceil\frac{n}{2}\rceil$ - 1 + i)))		
+     if((n mod 2 == 1) AND (A[i] = = A[$\lceil\frac{n}{2}\rceil$ - 1 + i)))		
                 return A[i] //end algorithm
-      if ((i mod 2 == 0) AND (A[i] = = A[$\lceil\frac{n}{2}\rceil$  + i)))
+      if ((n mod 2 == 0) AND (A[i] = = A[$\lceil\frac{n}{2}\rceil$  + i)))
                  return A[i]//end algorithm
  }
  return no majority person found
