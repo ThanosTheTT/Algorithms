@@ -184,7 +184,145 @@ function MajorityFinder2(A[1...n])
 
     \item Στη 2η γραμμή καλούμε την συνάρτηση  mergesort για να ταξινομήσουμε τον πίνακα Α κατα αλφαβητική σειρά$\mathcal{O}(nlogn)$
     \item Στις επόμενες  γραμμές ο αλγόριθμος εξετάζει για διαστήματα με μήκος μεγαλύτερο από το $\lfloor\frac{n}{2}\rfloor$\footnotemark[7] που να είναι ο ίδιος υποψήφιος στο πρώτο και στο τελευταίο στοιχειό του διαστήματος αναζήτησης, εκμεταλευόμενοι  το γεγονός οτι ο πίνακας Α είναι ταξινομημένος . Η διαδικασία τερματίζει είτε όταν βρεθεί υποψήφιος με πλειοψηφία είτε όταν θά έχουν προσπελαστεί όλα τα δυνατά διαστήματα χώρις κάποιο επιθυμητό αποτέλεσμα. H συγκεκριμένη διαδικασία είναι γραμμική και  έχει πολυπλοκότηα $\mathcal{O}(cn)=\mathcal{O}(n)$.
-    \item Aνακεφαλαιώνοντας ο αλγόριθμος αυτός σαφώς εμφανίζεται ποιο βελτιωμένος από τον πρώτο καθώς έχουμε ελλατώσει τις συγκρίσεις σε μεγάλο βαθμό με την βοήθεια του devide and conquer αλλά και πάλι εμφανίζονται αρκετές επαναλήψεις ανάγνωσης ψήφου .
+      \item Παρακάτω παρουσιάζεται ένα παράδειγμα για καλύτερη κατανόηση της διαδικασίας:
+    Εστω οτι έχουμε 2 πίνκαες 10 και 11 στοιχείων αντίστοιχα όπου είναι αποθηκευμένοι  ψήφοι με 2 μόνο γράμματα  για χάρη απλότητας  το πρώτο γράμμα συμβολίζει το όνομα και το δεύτερο  το επίθετο 
+
+\begin{center}
+\begin{tabular}{r|c|c|c|c|c|c|c|c|c|c|}
+\multicolumn{1}{r}{} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{6} & \multicolumn{1}{c}{7} & \multicolumn{1}{c}{8} & \multicolumn{1}{c}{9} & \multicolumn{1}{c}{10}\\
+\cline{2-11}
+ΑΡΤΙΟΣ Α& ΔΠ & ΔΠ & ΑΚ & ΑΒ & ΧΠ & ΧΠ & ΑΚ & ΔΠ & ΑΒ & ΑΚ\\
+\cline{2-11}
+\end{tabular}
+\begin{tabular}{r|c|c|c|c|c|c|c|c|c|c|c|}
+\multicolumn{1}{r}{} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{6} & \multicolumn{1}{c}{7} & \multicolumn{1}{c}{8} & \multicolumn{1}{c}{9} & \multicolumn{1}{c}{10} & \multicolumn{1}{c}{11}\\
+\cline{2-12}
+ΠΕΡΡΙΤΟΣ Π& ΧΠ & ΑΒ & ΧΠ & ΧΠ & ΑΚ & ΧΠ & ΧΠ & ΔΠ & ΧΠ & ΑΒ & ΑΚ \\
+\cline{2-12}
+\end{tabular}
+\end{center}
+
+Με την κλήση της merge sort οι πίνακες ταξινομούνται ως εξής:
+\begin{center}
+\begin{tabular}{r|c|c|c|c|c|c|c|c|c|c|}
+\multicolumn{1}{r}{} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{6} & \multicolumn{1}{c}{7} & \multicolumn{1}{c}{8} & \multicolumn{1}{c}{9} & \multicolumn{1}{c}{10}\\
+\cline{2-11}
+ Α& ΑΒ & ΑΒ & ΑΚ & ΑΚ & ΑΚ & ΔΠ & ΔΠ & ΔΠ & ΧΠ & ΧΠ\\
+\cline{2-11}
+\end{tabular}
+\begin{tabular}{r|c|c|c|c|c|c|c|c|c|c|c|}
+\multicolumn{1}{r}{} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{6} & \multicolumn{1}{c}{7} & \multicolumn{1}{c}{8} & \multicolumn{1}{c}{9} & \multicolumn{1}{c}{10} & \multicolumn{1}{c}{11}\\
+\cline{2-12}
+ Π& ΑΒ & ΑΒ & ΑΚ & ΑΚ & ΔΠ & ΧΠ & ΧΠ & ΧΠ & ΧΠ & ΧΠ & ΧΠ \\
+\cline{2-12}
+\end{tabular}
+\end{center}
+
+
+Στη συνέχεια ξεκινάει ο έλεγχος για διαστήματα ίσα με $\lfloor\frac{n}{2}\rfloor+1$:\\
+\textcolor{red}{i=1}
+\begin{center}
+\begin{tabular}{r|c|c|c|c|c|c|c|c|c|c|}
+\multicolumn{1}{r}{} & \multicolumn{1}{c}{\textcolor{red}{1}} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{\textcolor{red}{6}} & \multicolumn{1}{c}{7} & \multicolumn{1}{c}{8} & \multicolumn{1}{c}{9} & \multicolumn{1}{c}{10}\\
+\cline{2-11}
+ Α& \textcolor{red}{ΑΒ} & ΑΒ & ΑΚ & ΑΚ & ΑΚ & \textcolor{red}{ΔΠ} & ΔΠ & ΔΠ & ΧΠ & ΧΠ\\
+\cline{2-11}
+\multicolumn{2}{r}{$\uparrow$} & \multicolumn{3}{c}{$\lfloor\frac{n}{2}\rfloor+1$} & \multicolumn{2}{r}{$\uparrow$}\\
+\cline{2-7}
+
+
+
+
+     
+\end{tabular}
+\end{center}
+ΑΒ$\neq$ΔΠ
+\begin{center}
+    
+\begin{tabular}{r|c|c|c|c|c|c|c|c|c|c|c|}
+\multicolumn{1}{r}{} & \multicolumn{1}{c}{\textcolor{red}{1}} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{\textcolor{red}{6}} & \multicolumn{1}{c}{7} & \multicolumn{1}{c}{8} & \multicolumn{1}{c}{9} & \multicolumn{1}{c}{10} & \multicolumn{1}{c}{11}\\
+\cline{2-12}
+ Π& \textcolor{red}{ΑΒ} & ΑΒ & ΑΚ & ΑΚ & ΔΠ & \textcolor{red}{ΧΠ} & ΧΠ & ΧΠ & ΧΠ & ΧΠ & ΧΠ \\
+\cline{2-12}
+\multicolumn{2}{r}{$\uparrow$} & \multicolumn{3}{c}{$\lfloor\frac{n}{2}\rfloor+1$} & \multicolumn{2}{r}{$\uparrow$}\\
+\cline{2-7}
+\end{tabular}
+\end{center}
+ΑΒ$\neq$XΠ\\
+Tώρα για \textcolor{red}{i=2}:
+\begin{center}
+\begin{tabular}{r|c|c|c|c|c|c|c|c|c|c|}
+\multicolumn{1}{r}{} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{\textcolor{red}{2}} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{6} & \multicolumn{1}{c}{\textcolor{red}{7}} & \multicolumn{1}{c}{8} & \multicolumn{1}{c}{9} & \multicolumn{1}{c}{10}\\
+\cline{2-11}
+ Α& ΑΒ & \textcolor{red}{ΑΒ} & ΑΚ & ΑΚ & ΑΚ & ΔΠ & \textcolor{red}{ΔΠ} & ΔΠ & ΧΠ & ΧΠ\\
+\cline{2-11}
+\multicolumn{3}{r}{$\uparrow$} & \multicolumn{3}{c}{$\lfloor\frac{n}{2}\rfloor+1$} & \multicolumn{2}{r}{$\uparrow$}\\
+\cline{3-8}
+
+
+
+
+     
+\end{tabular}
+\end{center}
+ΑΒ$\neq$ΔΠ
+\begin{center}
+    
+\begin{tabular}{r|c|c|c|c|c|c|c|c|c|c|c|}
+\multicolumn{1}{r}{} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{\textcolor{red}{2}} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{6} & \multicolumn{1}{c}{\textcolor{red}{7}} & \multicolumn{1}{c}{8} & \multicolumn{1}{c}{9} & \multicolumn{1}{c}{10} & \multicolumn{1}{c}{11}\\
+\cline{2-12}
+ Π& ΑΒ & \textcolor{red}{ΑΒ} & ΑΚ & ΑΚ & ΔΠ & ΧΠ & \textcolor{red}{ΧΠ} & ΧΠ & ΧΠ & ΧΠ & ΧΠ \\
+\cline{2-12}
+\multicolumn{3}{r}{$\uparrow$} & \multicolumn{3}{c}{$\lfloor\frac{n}{2}\rfloor+1$} & \multicolumn{2}{r}{$\uparrow$}\\
+\cline{3-8}
+\end{tabular}
+\end{center}
+ΑΒ$\neq$XΠ\\
+\\\textcolor{red}{i=3}
+$\dots$\\\textcolor{red}{i=4}
+$\dots$\\\textcolor{red}{i=5}$\dots$ για Περριτό
+
+Για άρτιο:
+\begin{center}
+\begin{tabular}{r|c|c|c|c|c|c|c|c|c|c|}
+\multicolumn{1}{r}{} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{4} & \multicolumn{1}{c}{\textcolor{red}{5}} & \multicolumn{1}{c}{6} & \multicolumn{1}{c}{7} & \multicolumn{1}{c}{8} & \multicolumn{1}{c}{9} & \multicolumn{1}{c}{\textcolor{red}{10}}\\
+\cline{2-11}
+ Α& ΑΒ & ΑΒ & ΑΚ & ΑΚ & \textcolor{red}{ΑΚ} & ΔΠ & ΔΠ & ΔΠ & ΧΠ & \textcolor{red}{ΧΠ}\\
+\cline{2-11}
+\multicolumn{6}{r}{$\uparrow$} & \multicolumn{3}{c}{$\lfloor\frac{n}{2}\rfloor+1$} & \multicolumn{2}{r}{$\uparrow$}\\
+\cline{6-11}
+
+
+
+
+     
+\end{tabular}
+\end{center}
+ΑΚ$\neq$XΠ
+Αρα κανένας υποψήφιος του πίνακα Α δεν έχει πλειοψηφία πάνω απο 50\%\\
+O πίνακας Π θα έχει και επανάλυψη \textcolor{red}{i=6}
+γιατί χρησιμοποιούμε πάνω όριο στον βρόχο επανάλυψης ($\lceil\frac{n}{2}\rceil$):
+\begin{center}
+    
+\begin{tabular}{r|c|c|c|c|c|c|c|c|c|c|c|}
+\multicolumn{1}{r}{} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{\textcolor{red}{6}} & \multicolumn{1}{c}{7} & \multicolumn{1}{c}{8} & \multicolumn{1}{c}{9} & \multicolumn{1}{c}{10} & \multicolumn{1}{c}{\textcolor{red}{11}}\\
+\cline{2-12}
+ Π& ΑΒ & ΑΒ & ΑΚ & ΑΚ & ΔΠ & \textcolor{red}{ΧΠ} & ΧΠ & ΧΠ & ΧΠ & ΧΠ & \textcolor{red}{ΧΠ} \\
+\cline{2-12}
+\multicolumn{7}{r}{$\uparrow$} & \multicolumn{3}{c}{$\lfloor\frac{n}{2}\rfloor+1$} & \multicolumn{2}{r}{$\uparrow$}\\
+\cline{7-12}
+\end{tabular}
+\end{center}
+\textcolor{red}{XΠ=ΧΠ}
+Aρα στο παράδειγμα μας ο ΧΠ έχει πλειοψηφία πάνω απο 50\%.
+
+
+
+
+
+
+
+    \item Aνακεφαλαιώνοντας ο αλγόριθμος αυτός σαφώς εμφανίζεται ποιο βελτιωμένος από τον πρώτο καθώς έχουμε ελλατώσει τις συγκρίσεις σε μεγάλο βαθμό με την βοήθεια του devide and conquer αλλά και πάλι εμφανίζονται αρκετές επαναλήψεις ανάγνωσης ψήφου .Συνολικά η πολυπλοκότητα είναι $\mathcal{O}(nlogn+n)=\mathcal{O}(nlogn)$
     \end{itemize}
 \footnotetext[7]{Χρησιμοποιούμε κάτω οριο $(\lfloor{ \:\: }\rfloor)$ ώστε να συμπεριλάβουμε τις περιπτώσεις για άρτιο και περιτττό (n) σε μια έκφραση. }
 \pagebreak
