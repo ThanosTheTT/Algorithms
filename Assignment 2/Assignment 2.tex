@@ -1,1 +1,109 @@
+\documentclass[a4paper]{article}
 
+\usepackage[greek,english]{babel}
+\usepackage{alphabeta}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{tikz, tcolorbox}
+\usepackage{geometry}
+\usepackage{amsmath, mathtools}
+\usepackage[bottom, symbol]{footmisc}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\newcommand{\listsetup}
+{\lstset{ 
+  backgroundcolor=\color{blue!8!white},
+  breaklines=true,
+  commentstyle=\color{ForestGreen},
+  frame=single,
+  keywordstyle=\color{blue},
+  language=C,
+  numbers=left,
+  numbersep=4pt,
+  numberstyle=\color{black},
+  rulecolor=\color{purple},    
+  stringstyle=\color{orange},  
+  showstringspaces=false,
+  tabsize=4,
+  framexleftmargin=14pt,
+  framexrightmargin=0pt
+}}
+
+\newgeometry{top = 3cm,
+			 bottom = 3cm, 
+			 inner = 3cm,
+			 outer = 2cm}
+			 
+\title{\textbf{Algorithms - Assignment 2}}
+
+\author{Καζγκούτης Αθανάσιος \and
+	    Παπαδόπουλος Δημήτριος-Λάζαρος
+}
+
+
+
+\begin{document}
+\maketitle
+\newpage
+\section*{Πρόβλημα 1}
+
+\listsetup
+\begin{lstlisting}[mathescape]
+function MaxSuccessPath(G,P,s)
+    Initialize(G,s)
+    D = $\emptyset$
+    Q=G.V
+    while Q$\neq\emptyset$
+        u=ExtractMaxQ
+        if (u = = t)
+            u = t
+            PrintPath(u)
+        D = D $\cup$ {u}
+        for each vertex v $\in$ G.Adj[u]
+           Relax(u,v,p)
+        
+\end{lstlisting}
+
+\listsetup
+\begin{lstlisting}[mathescape]
+function Initialize(G,s)
+    for each vertex $\in$ G.V
+        v.p = 0
+        v.$\pi$ = NULL
+    s.p = 1
+\end{lstlisting}
+
+\listsetup
+\begin{lstlisting}[mathescape]
+function Relax(u,v,p)
+    if ($v.p < u.p \cdot p_{uv}$)
+        $v.p = u.p \cdot p_{uv}$
+        $v.\pi = u$
+\end{lstlisting}
+Η διαδικαίσα της ΧΑΛΑΡΩΣΗΣ μιας ακμης (u,v) έχει ως εξής:ελέγχουμε εαν μπορούμε να βελτιώσουμε την μέγιστη πιθανότητα (p)  της διαδρομής για τον κόμβο v διερχόμενοι μεσω του u .
+H ποσότητα v.p είναι η πιθανότητα λήψης του μυνήματος χωρίς λάθη.
+Η  ποσότητα v.π είναι ο προκάτοχως του v.
+Ενώ το $p_{uv}$ είναι η πιθανότητα σωστης λήψης μυνήματος ανάμεσα στους κόμβους u,v
+
+\listsetup
+\begin{lstlisting}[mathescape]
+function printPath(u)
+    i = 1
+    R[0] = u
+    while $u.\pi \neq NULL$
+        R[i] = $u.\pi $
+        $u = u.\pi$
+        i = i + 1 
+    for j = i-1 : -1 : 0
+        print $\rightarrow$ R[j]
+\end{lstlisting}
+
+Ο παραπάνω αλγόριθμος 
+
+
+
+\newpage
+\section*{Πρόβλημα 2}
+
+\end{document}
