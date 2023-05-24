@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.5.24)  24 MAY 2023 21:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.5.24)  24 MAY 2023 23:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1199,12 +1199,21 @@ File: omscmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 67.
  [2]
+Overfull \hbox (5.64024pt too wide) in paragraph at lines 124--131
+[]\LGR/cmr/m/n/10.95 Sthn \OT1/cmr/m/n/10.95 Max-Suc-cess-Path : \LGR/cmr/m/n/1
+0.95 Sth grammh \OT1/cmr/m/n/10.95 2 \LGR/cmr/m/n/10.95 O\OT1/cmr/m/n/10.95 (V)
+ \LGR/cmr/m/n/10.95 Sth grammh \OT1/cmr/m/n/10.95 3,4 \LGR/cmr/m/n/10.95 O\OT1/
+cmr/m/n/10.95 (1) \LGR/cmr/m/n/10.95 Stic gram-mec \OT1/cmr/m/n/10.95 5-9 \LGR/
+cmr/m/n/10.95 O\OT1/cmr/m/n/10.95 ($\OML/cmm/m/it/10.95 V[]$\OT1/cmr/m/n/10.95 
+)\LGR/cmr/m/n/10.95 kajwc
+ []
+
 [3] [4] [5] (Assignment 2.aux) ) 
 Here is how much of TeX's memory you used:
- 21306 strings out of 476331
- 424195 string characters out of 5788237
+ 21312 strings out of 476331
+ 424269 string characters out of 5788237
  1964660 words of memory out of 5000000
- 41395 multiletter control sequences out of 15000+600000
+ 41401 multiletter control sequences out of 15000+600000
  521487 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,6n,104p,1167b,1605s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1222,7 +1231,7 @@ k/grmn1095.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 cbgreek/grmn1200.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/cbgreek/grxn1095.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/t
 ype1/public/cbgreek/grxn1440.pfb>
-Output written on "Assignment 2.pdf" (5 pages, 165872 bytes).
+Output written on "Assignment 2.pdf" (5 pages, 173074 bytes).
 PDF statistics:
  82 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
